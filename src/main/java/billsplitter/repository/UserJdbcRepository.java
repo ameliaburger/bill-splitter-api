@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import billsplitter.entities.User;
+import billsplitter.mappers.UserMapper;
 
 @Repository
 public class UserJdbcRepository {
@@ -31,22 +32,4 @@ public class UserJdbcRepository {
 		List<User> users = jdbcTemplate.query(sql, new UserMapper());
 		return users;
 	}
-	
-	private class UserMapper implements RowMapper<User> {
-		
-		@Override
-		public User mapRow(ResultSet rs, int i) throws SQLException {
-			User user = new User();
-			
-			user.setUserId(rs.getString("UserId"));
-			user.setFirstName(rs.getString("FirstName"));
-			user.setLastName(rs.getString("LastName"));
-			user.setEmail(rs.getString("Email"));
-			user.setJoinDate(rs.getDate("JoinDate"));
-			
-			return user;
-		}
-		
-	}
-
 }

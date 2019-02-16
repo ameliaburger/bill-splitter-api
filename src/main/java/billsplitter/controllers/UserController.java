@@ -11,6 +11,7 @@ import request_response_pairs.UsersResponse;
 import services.UserService;
 
 @RestController
+@RequestMapping(value="/api/user")
 public class UserController {
 	
 	private final UserJdbcRepository userJdbcRepository;
@@ -20,7 +21,7 @@ public class UserController {
 		this.userJdbcRepository = userJdbcRepository;
 	}
 	
-	@RequestMapping(path="/", produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(path="/get-all", produces=MediaType.APPLICATION_JSON_VALUE)
 	public UsersResponse getUsers() {
 		UsersResponse usersResponse = new UsersResponse();
 		usersResponse.setUsers(userJdbcRepository.getUsers());

@@ -21,7 +21,7 @@ USE `billsplitter` ;
 DROP TABLE IF EXISTS `billsplitter`.`User` ;
 
 CREATE TABLE IF NOT EXISTS `billsplitter`.`User` (
-  `UserId` INT NOT NULL,
+  `UserId` INT NOT NULL AUTO_INCREMENT,
   `FirstName` VARCHAR(45) NOT NULL,
   `LastName` VARCHAR(45) NOT NULL,
   `Email` VARCHAR(100) NULL,
@@ -36,9 +36,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `billsplitter`.`Session` ;
 
 CREATE TABLE IF NOT EXISTS `billsplitter`.`Session` (
-  `SessionId` INT NOT NULL,
+  `SessionId` INT NOT NULL AUTO_INCREMENT,
   `SessionName` VARCHAR(45) NOT NULL,
-  `AdminId` INT NOT NULL,
+  `AdminId` INT NULL,
   PRIMARY KEY (`SessionId`),
   INDEX `fk_Session_User1_idx` (`AdminId` ASC),
   CONSTRAINT `fk_Session_User1`
@@ -79,13 +79,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `billsplitter`.`Transaction` ;
 
 CREATE TABLE IF NOT EXISTS `billsplitter`.`Transaction` (
-  `TransactionId` INT NOT NULL,
+  `TransactionId` INT NOT NULL AUTO_INCREMENT,
   `UserPaidId` INT NOT NULL,
   `SessionId` INT NOT NULL,
   `Description` VARCHAR(45) NOT NULL,
-  `Time` DATETIME NOT NULL,
+  `Date` DATETIME NOT NULL,
   `Amount` DECIMAL(10,2) NOT NULL,
-  `Currency` VARCHAR(45) NOT NULL,
+  `Currency` VARCHAR(45) NULL,
   PRIMARY KEY (`TransactionId`),
   INDEX `fk_Transaction_User1_idx` (`UserPaidId` ASC),
   INDEX `fk_Transaction_Session1_idx` (`SessionId` ASC),
