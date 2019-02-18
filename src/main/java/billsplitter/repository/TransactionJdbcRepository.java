@@ -123,11 +123,12 @@ public class TransactionJdbcRepository {
 			userPaid.setFirstName(rs.getString("FirstName"));
 			userPaid.setLastName(rs.getString("LastName"));
 			userPaid.setEmail(rs.getString("Email"));
-			userPaid.setJoinDate(rs.getDate("JoinDate"));
+			userPaid.setJoinDate(rs.getTimestamp("JoinDate").getTime());
 			trx.setUserPaid(userPaid);
 			
 			trx.setSessionId(rs.getString("SessionId"));
-			trx.setDate(rs.getDate("Date"));
+			trx.setDescription(rs.getString("Description"));
+			trx.setDateSubmitted(rs.getTimestamp("Date").getTime());
 			trx.setAmount(rs.getDouble("Amount"));
 			
 			return trx;

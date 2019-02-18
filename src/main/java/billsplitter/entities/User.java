@@ -1,13 +1,11 @@
 package billsplitter.entities;
 
-import java.util.Date;
-
 public class User {
     private String userId;
     private String firstName;
     private String lastName;
     private String email;
-    private Date joinDate;
+    private Long joinDate;
     
 	public String getUserId() {
 		return userId;
@@ -41,11 +39,11 @@ public class User {
 		this.email = email;
 	}
 	
-	public Date getJoinDate() {
+	public Long getJoinDate() {
 		return joinDate;
 	}
 	
-	public void setJoinDate(Date joinDate) {
+	public void setJoinDate(Long joinDate) {
 		this.joinDate = joinDate;
 	}
 

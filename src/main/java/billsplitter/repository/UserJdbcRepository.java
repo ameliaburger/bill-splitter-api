@@ -24,12 +24,14 @@ public class UserJdbcRepository {
 		this.jdbcTemplate  = jdbcTemplate;
 	}
 	
-	public List<User> getUsers() {
+	public List<User> getUsers(String sessionId) {
 		jdbcTemplate.setFetchSize(16);
 		
-		String sql = "SELECT * FROM User";
+		String sql = "SELECT * FROM User U " +
+					"JOIN User_Session US ON U.UserId = US.UserId " +
+					"WHERE US.SessionId = ?";
 		
-		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		List<User> users = jdbcTemplate.query(sql, new UserMapper(), sessionId);
 		return users;
 	}
 }

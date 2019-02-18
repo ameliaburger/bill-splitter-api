@@ -1,6 +1,4 @@
 package billsplitter.entities;
-
-import java.sql.Date;
 import java.util.List;
 
 public class Transaction {
@@ -8,7 +6,7 @@ public class Transaction {
 	private User userPaid;
 	private String sessionId;
 	private String description;
-	private Date date;
+	private Long dateSubmitted;
 	private Double amount;
 	private List<User> usersIncluded;
 	
@@ -44,12 +42,12 @@ public class Transaction {
 		this.description = description;
 	}
 	
-	public Date getDate() {
-		return date;
+	public Long getDateSubmitted() {
+		return dateSubmitted;
 	}
 	
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateSubmitted(Long dateSubmitted) {
+		this.dateSubmitted = dateSubmitted;
 	}
 	
 	public Double getAmount() {

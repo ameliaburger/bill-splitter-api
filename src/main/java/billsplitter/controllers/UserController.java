@@ -2,8 +2,10 @@ package billsplitter.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import billsplitter.repository.UserJdbcRepository;
@@ -21,10 +23,10 @@ public class UserController {
 		this.userJdbcRepository = userJdbcRepository;
 	}
 	
-	@RequestMapping(path="/get-all", produces=MediaType.APPLICATION_JSON_VALUE)
-	public UsersResponse getUsers() {
+	@RequestMapping(path="/get-for-session", produces=MediaType.APPLICATION_JSON_VALUE)
+	public UsersResponse getUsers(@RequestParam("sessionId") String sessionId) {
 		UsersResponse usersResponse = new UsersResponse();
-		usersResponse.setUsers(userJdbcRepository.getUsers());
+		usersResponse.setUsers(userJdbcRepository.getUsers(sessionId));
 		return usersResponse;
 	}
 
